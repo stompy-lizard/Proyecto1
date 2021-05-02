@@ -60,6 +60,12 @@ int main(int argc, char** argv) {
     }
     archivo = argv[1];
   }
+  if (!Util::fileExists(archivo)) {
+    std::cerr
+        << "Error: La ruta del archivo no es correcta, el archivo no existe."
+        << std::endl;
+    return 1;
+  }
 
   std::vector<Punto>* puntos = obtenerPuntos(archivo);
   std::cout << "Lista de puntos:" << std::endl;
