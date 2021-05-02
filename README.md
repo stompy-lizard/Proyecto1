@@ -3,5 +3,5 @@
 ## Uso
 ```
 make # compilar
-./proyecto1 # ejecutar
+./proyecto1 puntos.txt # ejecutar
 ```

@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <iostream>
+#include <fstream>
 #include <iterator>
 #include <regex>
 #include <sstream>
@@ -58,6 +59,12 @@ class Util {
   static bool isRegexMatch(const std::string& in, const std::string& re) {
     std::smatch m;
     return std::regex_match(in, m, std::regex(re));
+  }
+
+  //! Checks if file exists.
+  static bool fileExists (const std::string& name) {
+    std::ifstream file(name.c_str());
+    return file.good();
   }
 };
 
