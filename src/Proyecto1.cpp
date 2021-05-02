@@ -43,10 +43,25 @@ std::vector<Punto>* obtenerPuntos(std::string archivo) {
  *
  * @return int .
  */
-int main(void) {
-  // TODO solicitar archivo por argumento al programa(o alguna otra solución no
-  // hardcodeada). Imprime las advertencias si corresponde.
-  std::vector<Punto>* puntos = obtenerPuntos("./puntos.txt");
+int main(int argc, char** argv) {
+  std::string archivo;
+  // El primer argumento es el ejecutable, por lo que se requieren 2 argumentos
+  // como mínimo.
+  if (argc < 2) {
+    std::cerr << "Error: Se requiere un argumento que indique la ruta del "
+                 "archivo que contiene la lista de puntos."
+              << std::endl;
+    return 1;
+  } else {
+    if (argc > 2) {
+      std::cerr
+          << "Advertencia: Argumentos ignorados, solo se acepta un argumento."
+          << std::endl;
+    }
+    archivo = argv[1];
+  }
+
+  std::vector<Punto>* puntos = obtenerPuntos(archivo);
   std::cout << "Lista de puntos:" << std::endl;
   for (auto it = puntos->begin(); it != puntos->end(); ++it) {
     it->printPunto();
