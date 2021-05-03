@@ -1,0 +1,3 @@
+#instalar:
+sudo apt-get install libcgal-dev
+
