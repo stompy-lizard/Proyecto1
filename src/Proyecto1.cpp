@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include <cstdlib>
+
 #include "Punto.hh"
 #include "Util.hh"
 
@@ -67,11 +69,22 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  std::ofstream nuevoArchivo; //declaramos stream
+  nuevoArchivo.open("puntosNuevos");//archivo nuevo abierto
+  if( !nuevoArchivo ) //si no se pudo abrir 
+      std::cerr << "Error: nose puedo abrir el archivo nuevoArchvo" << std::endl;
+
   std::vector<Punto>* puntos = obtenerPuntos(archivo);
   std::cout << "Lista de puntos:" << std::endl;
   for (auto it = puntos->begin(); it != puntos->end(); ++it) {
+    nuevoArchivo << it->getX();
+    nuevoArchivo << " ";
+    nuevoArchivo << it->getY();
+    nuevoArchivo << std::endl;
     it->printPunto();
     std::cout << std::endl;
   }
+  nuevoArchivo.close();
+
   return 0;
 }

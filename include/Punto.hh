@@ -80,6 +80,14 @@ class Punto {
   std::string getPuntoStr();
 
   /**
+   * @brief Obtiene una representación de un punto. Devuelve puntos decimales
+   * fijos.
+   *
+   * @return std::string Representacion en texto del punto con formato correcto.
+   */
+//  std::string getPuntoFormateado();
+
+  /**
    * @brief Imprime una representación de un punto.
    *
    */

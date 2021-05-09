@@ -45,6 +45,11 @@ std::string Punto::getPuntoStr() {
          std::to_string(this->getY()) + ")";
 }
 
+/*std::string Punto::getPuntoFormateado(){//retorna linea con puntos en forma solicitado
+  return std::to_string(this->getX()) + " " + std::to_string(this->getY());
+}
+*/
+
 void Punto::printPunto() {
   std::cout << "(" << this->getX() << "," << this->getY() << ")";
 }
