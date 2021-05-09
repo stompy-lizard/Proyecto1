@@ -2,6 +2,8 @@
 
 ## Uso
 ```
-make # compilar
-./proyecto1 puntos.txt # ejecutar
+mkdir build && cd build
+cmake ..
+make
+./proyecto1 ../puntos.txt # ejecutar
 ```
