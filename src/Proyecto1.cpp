@@ -11,6 +11,24 @@
 #include "Punto.hh"
 #include "Util.hh"
 
+// includes for drawing the Voronoi Diagram
+#include <CGAL/Delaunay_triangulation_2.h>
+#include <CGAL/Delaunay_triangulation_adaptation_policies_2.h>
+#include <CGAL/Delaunay_triangulation_adaptation_traits_2.h>
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/Voronoi_diagram_2.h>
+#include <CGAL/draw_voronoi_diagram_2.h>
+
+// typedefs for defining the adaptor
+typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+typedef CGAL::Delaunay_triangulation_2<K> DT;
+typedef CGAL::Delaunay_triangulation_adaptation_traits_2<DT> AT;
+typedef CGAL::Delaunay_triangulation_caching_degeneracy_removal_policy_2<DT> AP;
+typedef CGAL::Voronoi_diagram_2<DT, AT, AP> VD;
+
+// typedef for the result type of the point location
+typedef AT::Site_2 Site_2;
+
 /**
  * @brief Obtiene un vector con los puntos presentes en cada linea del archivo
  * indicado.
@@ -38,6 +56,26 @@ std::vector<Punto>* obtenerPuntos(std::string archivo) {
     }
   }
   return puntos;
+}
+
+/**
+ * @brief Dibuja el diagrama de voronoi en una ventana nueva. Basado en el ejemplo de CGAL
+ *
+ * @param puntosNuevos Nombre del archivo a leer.
+ * @return int Informa éxito.
+ */
+int draw(std::string puntosNuevos) {
+  std::ifstream ifs(puntosNuevos);
+  assert(ifs);
+  VD vd;
+  Site_2 t;
+  while (ifs >> t) {
+    vd.insert(t);
+  }
+  ifs.close();
+  assert(vd.is_valid());
+  CGAL::draw(vd);
+  return EXIT_SUCCESS;
 }
 
 /**
@@ -85,6 +123,8 @@ int main(int argc, char** argv) {
     std::cout << std::endl;
   }
   nuevoArchivo.close();
+
+  draw("./puntosNuevos");
 
   return 0;
 }
