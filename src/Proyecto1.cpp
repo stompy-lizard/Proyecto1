@@ -29,6 +29,17 @@ typedef CGAL::Voronoi_diagram_2<DT, AT, AP> VD;
 // typedef for the result type of the point location
 typedef AT::Site_2 Site_2;
 
+#include <CGAL/Qt/Basic_viewer_qt.h>
+#include <CGAL/Qt/init_ogl_context.h>
+#include <CGAL/Random.h>
+#include <CGAL/Triangulation_utils_2.h>
+#include <CGAL/Voronoi_diagram_2/Accessor.h>
+#include <CGAL/Voronoi_diagram_2/Face.h>
+#include <CGAL/Voronoi_diagram_2/Handle_adaptor.h>
+#include <CGAL/Voronoi_diagram_2/Vertex.h>
+#include <CGAL/Voronoi_diagram_2/basic.h>
+#include <CGAL/license/Voronoi_diagram_2.h>
+
 /**
  * @brief Obtiene un vector con los puntos presentes en cada linea del archivo
  * indicado.
@@ -59,23 +70,54 @@ std::vector<Punto>* obtenerPuntos(std::string archivo) {
 }
 
 /**
- * @brief Dibuja el diagrama de voronoi en una ventana nueva. Basado en el ejemplo de CGAL
+ * @brief Dibuja un diagrama de voronoi en una nueva ventana. Es una copia de la
+ * función disponible en la libraría CGAL.
  *
- * @param puntosNuevos Nombre del archivo a leer.
- * @return int Informa éxito.
+ * @tparam DG Deluanay Graph
+ * @tparam AT Adaptation Trait.
+ * @tparam AP Adaptation Policy.
+ * @param av2 Diagrama de voronoi.
+ * @param title Titulo de la ventana.
+ * @param nofill Rellenar áreas de color.
+ * @param draw_voronoi_vertices Dibujar puntos de voronoi.
+ * @param draw_dual_vertices Dibujar vértices en el gráfico.
  */
-int draw(std::string puntosNuevos) {
-  std::ifstream ifs(puntosNuevos);
-  assert(ifs);
+template <class DG, class AT, class AP>
+void dibujar(const CGAL_VORONOI_TYPE &av2,
+             const char *title = "Diagrama de Voronoi", bool nofill = false,
+             bool draw_voronoi_vertices = true,
+             bool draw_dual_vertices = true) {
+  CGAL::Qt::init_ogl_context(4, 3);
+  int argc = 1;
+  const char *argv[2] = {"voronoi_2_viewer", "\0"};
+  QApplication app(argc, const_cast<char **>(argv));
+  CGAL::DefaultColorFunctorV2 fcolor;
+  CGAL::SimpleVoronoiDiagram2ViewerQt<CGAL_VORONOI_TYPE,
+                                      CGAL::DefaultColorFunctorV2>
+      mainwindow(app.activeWindow(), av2, title, nofill, draw_voronoi_vertices,
+                 draw_dual_vertices, fcolor);
+  mainwindow.show();
+  app.exec();
+}
+
+/**
+ * @brief Crea un diagrama de voronoi a partir de un archivo con el formato
+ * descrito en la especificación del proyecto.
+ *
+ * @param archivo Ruta al archivo de entrada.
+ * @return VD Diagrama de voronoi.
+ */
+VD crearDiagramaVoronoi(std::string archivo) {
   VD vd;
   Site_2 t;
-  while (ifs >> t) {
+  std::vector<Punto> *puntos = obtenerPuntos(archivo);
+  for (auto it = puntos->begin(); it != puntos->end(); ++it) {
+    std::istringstream iss(std::to_string(it->getX()) + " " +
+                           std::to_string(it->getY()));
+    iss >> t;
     vd.insert(t);
   }
-  ifs.close();
-  assert(vd.is_valid());
-  CGAL::draw(vd);
-  return EXIT_SUCCESS;
+  return vd;
 }
 
 /**
@@ -107,24 +149,8 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  std::ofstream nuevoArchivo; //declaramos stream
-  nuevoArchivo.open("puntosNuevos");//archivo nuevo abierto
-  if( !nuevoArchivo ) //si no se pudo abrir 
-      std::cerr << "Error: nose puedo abrir el archivo nuevoArchvo" << std::endl;
-
-  std::vector<Punto>* puntos = obtenerPuntos(archivo);
-  std::cout << "Lista de puntos:" << std::endl;
-  for (auto it = puntos->begin(); it != puntos->end(); ++it) {
-    nuevoArchivo << it->getX();
-    nuevoArchivo << " ";
-    nuevoArchivo << it->getY();
-    nuevoArchivo << std::endl;
-    it->printPunto();
-    std::cout << std::endl;
-  }
-  nuevoArchivo.close();
-
-  draw("./puntosNuevos");
+  VD vd = crearDiagramaVoronoi(archivo);
+  dibujar(vd);
 
   return 0;
 }
