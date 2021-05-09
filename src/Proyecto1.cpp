@@ -1,12 +1,11 @@
 #include <cmath>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
-
-#include <cstdlib>
 
 #include "Punto.hh"
 #include "Util.hh"
@@ -47,19 +46,19 @@ typedef AT::Site_2 Site_2;
  * @param archivo Ruta al archivo que contiene los puntos.
  * @return std::vector<Punto>* Vector con puntos parseados.
  */
-std::vector<Punto>* obtenerPuntos(std::string archivo) {
+std::vector<Punto> *obtenerPuntos(std::string archivo) {
   std::ifstream infile(archivo);
   std::string linea;
-  std::vector<Punto>* puntos = new std::vector<Punto>();
+  std::vector<Punto> *puntos = new std::vector<Punto>();
   int i = 0;
   while (std::getline(infile, linea)) {
     i++;  // permite indicar el número de línea en caso de advertencia.
     std::istringstream iss(linea);
     try {
-      Punto* punto = new Punto(
+      Punto *punto = new Punto(
           linea);  // Crea un punto si el formato de la línea es aceptado.
       puntos->push_back(*punto);  // Agrega el punto al vector.
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
       // Ignorar línea e imprimir advetencia.
       std::cerr << "Advertencia: Línea " << i << " del archivo " << archivo
                 << ": " << e.what() << "Contenido: " << linea << std::endl;
@@ -125,7 +124,7 @@ VD crearDiagramaVoronoi(std::string archivo) {
  *
  * @return int .
  */
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   std::string archivo;
   // El primer argumento es el ejecutable, por lo que se requieren 2 argumentos
   // como mínimo.
