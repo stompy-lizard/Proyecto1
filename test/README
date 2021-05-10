@@ -1,0 +1,28 @@
+#instalar cgal:
+sudo apt-get install libcgal-dev -y
+
+#instalar Qt
+sudo apt install libcgal-qt5-dev
+
+#compilar Vd_2_point_location.cpp
+g++ Vd_2_point_location.cpp -o exe -lgm
+
+#compilar ejemplo de draw con
+g++ draw_voronoi_diagram_2.cpp -lgmp -lQt5Gui -DCGAL_USE_BASIC_VIEWER #da error
+#usar:
+#archivo main.pro con:
+
+TEMPLATE += app
+QT += gui
+QT += widgets
+QT += xml
+QT += opengl
+LIBS += -lgmp
+DEFINES += CGAL_USE_BASIC_VIEWER
+SOURCES += draw.cpp
+
+#luego
+
+qmake
+make
+
