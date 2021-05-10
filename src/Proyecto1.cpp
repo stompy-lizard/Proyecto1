@@ -83,8 +83,8 @@ std::vector<Punto> *obtenerPuntos(std::string archivo) {
  */
 template <class DG, class AT, class AP>
 void dibujar(const CGAL_VORONOI_TYPE &av2,
-             const char *title = "Diagrama de Voronoi", bool nofill = false,
-             bool draw_voronoi_vertices = true,
+             const char *title = "Diagrama de Voronoi", bool nofill = true,
+             bool draw_voronoi_vertices = false,
              bool draw_dual_vertices = true) {
   CGAL::Qt::init_ogl_context(4, 3);
   int argc = 1;
@@ -95,8 +95,7 @@ void dibujar(const CGAL_VORONOI_TYPE &av2,
                                       CGAL::DefaultColorFunctorV2>
       mainwindow(app.activeWindow(), av2, title, nofill, draw_voronoi_vertices,
                  draw_dual_vertices, fcolor);
-  mainwindow.show();
-  app.exec();
+  mainwindow.grab().save("diagrama.png");
 }
 
 /**

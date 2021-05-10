@@ -5,5 +5,5 @@
 mkdir build && cd build
 cmake ..
 make
-./proyecto1 ../puntos.txt # ejecutar
+./Proyecto1 ../puntos.txt # ejecutar
 ```
