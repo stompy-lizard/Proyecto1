@@ -11,7 +11,7 @@
 // Acepta espacios antes y después del primer y segundo número, requiere una
 // coma entre los dos números.
 std::string Punto::regexStr =
-    "\\s*(-{0,1}\\d+\\.*\\d*)\\s*,\\s*(-{0,1}\\d+\\.*\\d*)\\s*";
+    "\\s*(-{0,1}\\d+\\.{0,1}\\d*)\\s*,\\s*(-{0,1}\\d+\\.{0,1}\\d*)\\s*";
 
 Punto::Punto(std::string coordenada) {
   // Se comprueba el formato del punto.
