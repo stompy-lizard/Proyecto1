@@ -1,4 +1,4 @@
-#include "Punto.hh"
+#include "Punto.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "Util.hh"
+#include "Util.hpp"
 
 // Acepta espacios antes y después del primer y segundo número, requiere una
 // coma entre los dos números.
