@@ -107,6 +107,7 @@
      cd ~/Proyecto1_IE0724/build
      ./Proyecto1 ../puntos.txt
      ```
+     También es posible hacer uso del script de bash adjunto que sirve para hacer la compilación y ejecución automática.
   
   
   
