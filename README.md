@@ -20,6 +20,16 @@
 * [Síntesis del funcionamiento del programa](#program-info)
 * [Instrucciones de compilación y ejecución](#instructions)
 * [Pasos a seguir con una instalación limpia de ubuntu 20.04 mínima.](#ubuntu)
+* [Requerimientos mínimos del sistema](#requisitos)
+* 
+<h3> Requerimientos mínimos del sistema </h3>
+<p>
+    Ubuntu versión 20.04.2 LTS  
+    g++ versión 9.3.0  
+    CGAL 5.2.1  
+    QT versión 5.12.8  
+</p>
+
 
 <h3>  Síntesis del funcionamiento del programa  </h3>
   <p >
