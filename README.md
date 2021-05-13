@@ -19,6 +19,7 @@
 ## Tabla de contenidos
 * [Síntesis del funcionamiento del programa](#program-info)
 * [Instrucciones de compilación y ejecución](#instructions)
+* [Pasos a seguir con una instalación limpia de ubuntu 20.04 mínima.](#ubuntu)
 
 <h3>  Síntesis del funcionamiento del programa  </h3>
   <p >
@@ -38,15 +39,64 @@
       Para la compilación y ejecución del programa es necesario tener instalada la herramienta de automatización de código CMake. 
       Se debe descargar el repositorio y dentro de la carpeta en la que están incluidos los directorios de "include" y "src" ejecutar las siguientes
       instrucciones en la consola (terminal) de comandos:
-      <ul>
-        <li> mkdir build && cd build      </li>
-        <li> cmake ..                     </li>
-        <li> make                         </li>
-        <li> ./Proyecto1 ../[nombre_del_archivo].txt    </li>
-      </ul>
   </p>
   
+  ```
+  mkdir build && cd build     
+  cmake ..                    
+  make                        
+  ./Proyecto1 ../[nombre_del_archivo].txt   
+  ```
+      
   <p>
       Ejemplo de la última instrucción del ejecutable:
                   ./Proyecto1 ../entrada1.txt
   </p>
+  
+  
+  
+  <h3>Pasos a seguir con una instalación limpia de ubuntu 20.04 mínima. </h3>
+
+ - Se requiere interfaz gráfica, se usa la interfaz por defecto, gnome.
+ - Instalar todas las actualizaciones.
+ - En una terminal.
+   - Instalar programas y librerías requeridas:
+     ```
+     sudo apt install -y build-essential make cmake git
+     sudo apt install -y libgmp-dev libmpfr-dev libboost-dev libcgal-qt5-dev
+     ```
+   - Descargar y descomprimir CGAL 5.2.1:
+     ```
+     cd ~
+     wget https://github.com/CGAL/cgal/releases/download/v5.2.1/CGAL-5.2.1.zip
+     unzip CGAL-5.2.1.zip
+     ```
+   - Compilar e instalar CGAL 5.2.1:
+     ```
+     cd ~/CGAL-5.2.1
+     cmake -B build -DCGAL_HEADER_ONLY=OFF -DCMAKE_BUILD_TYPE=Release
+     cmake --build build --config Release
+     cd build
+     sudo make install
+     ```
+   - Descargar el proyecto:
+     ```
+     cd ~
+     git clone https://github.com/robz25/Proyecto1_IE0724.git
+     ```
+   - Compilar el proyecto:
+     ```
+     cd ~/Proyecto1_IE0724
+     cmake -B build -DCMAKE_BUILD_TYPE=Release
+     cmake --build build --config Release
+     ```
+   - Ejecutar el proyecto:
+     ```
+     cd ~/Proyecto1_IE0724/build
+     ./Proyecto1 ../puntos.txt
+     ```
+  
+  
+  
+  
+  
