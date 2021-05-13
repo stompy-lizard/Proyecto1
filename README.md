@@ -24,10 +24,12 @@
 * 
 <h3> Requerimientos mínimos del sistema </h3>
 <p>
-    Ubuntu versión 20.04.2 LTS  
-    g++ versión 9.3.0  
-    CGAL 5.2.1  
-    QT versión 5.12.8  
+  <ul>
+    <li> Ubuntu versión 20.04.2 LTS           </li>
+    <li> g++ versión 9.3.0                    </li>
+    <li> CGAL 5.2.1                           </li>
+    <li> QT versión 5.12.8                    </li>
+  </ul>
 </p>
 
 
