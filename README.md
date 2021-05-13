@@ -36,7 +36,7 @@
 <h3> Instrucciones de compilación y ejecución </h3>
   <p>
       Para la compilación y ejecución del programa es necesario tener instalada la herramienta de automatización de código CMake. 
-      Se debe descargar el repositorio y dentro de la carpeta en la que están incluidos los directorios de "include" y "test" ejecutar las siguientes
+      Se debe descargar el repositorio y dentro de la carpeta en la que están incluidos los directorios de "include" y "src" ejecutar las siguientes
       instrucciones en la consola (terminal) de comandos:
       <ul>
         <li> mkdir build && cd build      </li>
