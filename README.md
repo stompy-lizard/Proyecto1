@@ -16,7 +16,7 @@
 
 <hr>
 
-## Table of contents
+## Tabla de contenidos
 * [Síntesis del funcionamiento del programa](#program-info)
 * [Instrucciones de compilación y ejecución](#instructions)
 
@@ -47,11 +47,6 @@
   </p>
   
   <p>
-      La última instrucción del ejecutable, por ejemplo, puede ser escrita como:
+      Ejemplo de la última instrucción del ejecutable:
+                  ./Proyecto1 ../entrada1.txt
   </p>
-```
-mkdir build && cd build
-cmake ..
-make
-./Proyecto1 ../puntos.txt # ejecutar
-```
