@@ -21,7 +21,7 @@
 * [Instrucciones de compilación y ejecución](#instructions)
 * [Pasos a seguir con una instalación limpia de ubuntu 20.04 mínima.](#ubuntu)
 * [Requerimientos mínimos del sistema](#requisitos)
-* 
+
 <h3> Requerimientos mínimos del sistema </h3>
 <p>
   <ul>
