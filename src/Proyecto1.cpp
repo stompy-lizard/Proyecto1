@@ -8,8 +8,8 @@
 #include <vector>
 
 #include "CGALBridge.hpp"
-#include "Punto.hh"
-#include "Util.hh"
+#include "Punto.hpp"
+#include "Util.hpp"
 
 /**
  * @brief Programa principal.

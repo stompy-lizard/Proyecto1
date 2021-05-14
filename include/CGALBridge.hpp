@@ -30,7 +30,7 @@ typedef AT::Site_2 Site_2;
 #include <CGAL/Voronoi_diagram_2/basic.h>
 #include <CGAL/license/Voronoi_diagram_2.h>
 
-#include "Punto.hh"
+#include "Punto.hpp"
 
 /**
  * @Author: Emilio Rojas
