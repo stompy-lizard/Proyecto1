@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "Punto.hh"
-#include "Util.hh"
+#include "Punto.hpp"
+#include "Util.hpp"
 
 // includes for drawing the Voronoi Diagram
 #include <CGAL/Delaunay_triangulation_2.h>
